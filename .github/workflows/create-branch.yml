@@ -16,8 +16,12 @@ jobs:
         ISSUE_NUMBER=$(echo "${{ github.event.issue.number }}")
         ISSUE_TITLE=$(echo "${{ github.event.issue.title }}" | sed 's/ /-/g' | tr '[:upper:]' '[:lower:]')
         BRANCH_NAME="issue-${ISSUE_NUMBER}-${ISSUE_TITLE}"
-        git config --global user.email "you@example.com"
-        git config --global user.name "Your Name"
+        
+        # Dynamically set git config with actor's username and a no-reply email
+        git config --global user.name "${{ github.actor }}"
+        git config --global user.email "${{ github.actor }}@users.noreply.github.com"
+        
+        # Create and push the branch
         git checkout -b $BRANCH_NAME
         git push origin $BRANCH_NAME
 
@@ -25,6 +29,8 @@ jobs:
       run: |
         ISSUE_NUMBER=$(echo "${{ github.event.issue.number }}")
         BRANCH_NAME="issue-${ISSUE_NUMBER}-${ISSUE_TITLE}"
+        
+        # Post a comment on the issue
         curl -X POST \
           -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
           -H "Content-Type: application/json" \
