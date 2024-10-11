@@ -11,6 +11,13 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
 
+    - name: Set up SSH
+      run: |
+        mkdir -p ~/.ssh
+        echo "${{ secrets.ACTIONS_DEPLOY_KEY }}" > ~/.ssh/id_ed25519
+        chmod 600 ~/.ssh/id_ed25519
+        ssh-keyscan github.com >> ~/.ssh/known_hosts
+
     - name: Create branch
       run: |
         ISSUE_NUMBER=$(echo "${{ github.event.issue.number }}")
@@ -23,6 +30,7 @@ jobs:
         
         # Create and push the branch
         git checkout -b $BRANCH_NAME
+        git remote set-url origin git@github.com:Darkwing-Duck-Tamagotchi/kraken-kritters.git
         git push origin $BRANCH_NAME
 
     - name: Comment on the issue
