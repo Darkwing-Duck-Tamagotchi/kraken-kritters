@@ -1,0 +1,32 @@
+name: Create Branch from Issue
+
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  create_branch:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Create branch
+      run: |
+        ISSUE_NUMBER=$(echo "${{ github.event.issue.number }}")
+        ISSUE_TITLE=$(echo "${{ github.event.issue.title }}" | sed 's/ /-/g' | tr '[:upper:]' '[:lower:]')
+        BRANCH_NAME="issue-${ISSUE_NUMBER}-${ISSUE_TITLE}"
+        git config --global user.email "you@example.com"
+        git config --global user.name "Your Name"
+        git checkout -b $BRANCH_NAME
+        git push origin $BRANCH_NAME
+
+    - name: Comment on the issue
+      run: |
+        ISSUE_NUMBER=$(echo "${{ github.event.issue.number }}")
+        BRANCH_NAME="issue-${ISSUE_NUMBER}-${ISSUE_TITLE}"
+        curl -X POST \
+          -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+          -H "Content-Type: application/json" \
+          -d '{"body":"Branch created: `'"$BRANCH_NAME"'`"}' \
+          https://api.github.com/repos/${{ github.repository }}/issues/${ISSUE_NUMBER}/comments
