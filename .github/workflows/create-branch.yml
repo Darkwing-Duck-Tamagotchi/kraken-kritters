@@ -26,7 +26,7 @@ jobs:
         
         # Dynamically set git config with actor's username and a no-reply email
         git config --global user.name "${{ github.actor }}"
-        git config --global user.email "${{ github.actor }}@users.noreply.github.com"
+        git config --global user.email "${{ github.actor }}@gmail.com"
         
         # Create and push the branch
         git checkout -b $BRANCH_NAME
