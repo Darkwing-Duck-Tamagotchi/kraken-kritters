@@ -1,0 +1,18 @@
+{
+  "name": "kraken-kritters",
+  "version": "1.0.0",
+  "description": "krakens-kritters",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^29.7.0"
+  },
+  "dependencies": {
+    "animate.css": "^4.1.1"
+  }
+}
