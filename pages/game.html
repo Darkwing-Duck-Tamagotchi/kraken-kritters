@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A fun, interactive Kritter game where you take care of your virtual pet by feeding, petting, cleaning, and playing with it.">
+    <title>Kraken's Kritters</title>
+    <script src="../js/app.js"></script>
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <!-- Main container for accessibility -->
+    <main>
+        <!-- Central container where the pet will live -->
+        <section aria-labelledby="game-title">
+            <h1 id="game-title">Kraken's Kritters</h1>
+
+            <!-- Informative modal for warnings or alerts -->
+            <div id="modal" role="dialog" aria-labelledby="modal-title" aria-hidden="true">
+                <h2 id="modal-title">Important Information</h2>
+                <p id="modal-content">This area will show alerts, warnings, or instructions to the user.</p>
+                <button id="close-modal" aria-label="Close the modal">Close</button>
+            </div>
+
+            <!-- The central container for the pet -->
+            <div id="kritter-container" role="region" aria-label="Kritter Habitat">
+                <div id="healthbar-wrap">
+                    <div class="healthbar-item health">
+                        <i></i>
+                        <p></p>
+                    </div>
+                    <div class="healthbar-item pet">
+                        <i></i>
+                        <p></p>
+                    </div>
+                    <div class="healthbar-item clean">
+                        <i></i>
+                        <p></p>
+                    </div>
+                    <div class="healthbar-item play">
+                        <i></i>
+                        <p></p>
+                    </div>
+                </div>
+                <div id="character-wrap">
+                    <!-- Placeholder for the virtual pet -->
+                    <p>Your Kritter will appear here once you start the game.</p>
+                </div>
+            </div>
+
+            <!-- Start Game Button -->
+            <button id="start-game" aria-controls="kritter-container">
+                Start Game
+            </button>
+
+            <!-- Buttons to interact with the pet -->
+            <div id="action-buttons" role="group" aria-label="Kritter Actions">
+                <button id="feed-button" aria-label="Feed your Kritter">Feed</button>
+                <button id="pet-button" aria-label="Pet your Kritter">Pet</button>
+                <button id="clean-button" aria-label="Clean your Kritter">Clean</button>
+                <button id="play-button" aria-label="Play with your Kritter">Play</button>
+            </div>
+        </section>
+    </main>
+
+    <!-- Skip to content link for accessibility -->
+    <a href="#kritter-container" class="skip-to-content">Skip to main content</a>
+</body>
+</html>
