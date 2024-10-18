@@ -52,7 +52,7 @@ let availableCharacters = [{
 }
 ]
 function randomCharacter() {
-    let randomCharacters = Math.floor(Math.random() * availableCharacters.length - 1)
-    pet = availableCharacters[randomCharacters];
+    let randomNum = Math.floor(Math.random() * availableCharacters.length - 1)
+    pet = availableCharacters[randomNum];
 }
 
