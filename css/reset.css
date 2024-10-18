@@ -1,0 +1,104 @@
+/* Resetting all margins, paddings, and borders */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Remove the border in all browsers for consistency */
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+article, aside, details, figcaption, figure, footer, header, hgroup, nav, section {
+    display: block;
+}
+
+/* Remove list styles */
+ul, ol {
+    list-style: none;
+}
+
+/* Remove quotes from blockquotes and q elements */
+blockquote, q {
+    quotes: none;
+}
+blockquote::before, blockquote::after, q::before, q::after {
+    content: '';
+    content: none;
+}
+
+/* Reset table styles */
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+/* Reset default form and input styles */
+button, input, select, textarea {
+    font-family: inherit;
+    font-size: 100%;
+    margin: 0;
+    padding: 0;
+    border: none;
+    background: none;
+    box-sizing: border-box;
+}
+
+/* Remove button default background */
+button {
+    cursor: pointer;
+    background: transparent;
+}
+
+/* Remove focus outlines for better accessibility (add custom styles later) */
+:focus {
+    outline: none;
+}
+
+/* Set a consistent base font size */
+html {
+    font-size: 100%; /* 16px by default in most browsers */
+    line-height: 1.5;
+}
+
+/* Set body defaults */
+body {
+    font-family: sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: #fff;
+    color: #000;
+}
+
+/* Image reset */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Input element reset */
+input, textarea {
+    outline: none;
+}
+
+/* Remove all default button styling */
+button {
+    border: none;
+    padding: 0;
+    background: none;
+}
+
+/* Reset anchor tag color inheritance */
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+/* Prevent vertical text overflow */
+html, body {
+    overflow-x: hidden;
+}
