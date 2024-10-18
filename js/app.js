@@ -1,4 +1,5 @@
 // Main JS Application File
+
 function endGame() {
     gameIsActive = false;
 }
@@ -27,3 +28,13 @@ function decreaseHunger () {
 }
 
 setInterval(decreaseHunger, 10000);
+
+
+let gameIsActive = false;
+function startGame() {
+    gameisActive = true;
+}
+
+document.getElementById().addEventListener(click, startGame())
+
+
