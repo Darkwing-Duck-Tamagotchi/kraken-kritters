@@ -3,7 +3,7 @@
 
 let availableCharacters = [{
     species: 'string',
-    imageUrl: image1.jpg,
+    // imageUrl: image1.jpg,
     stats: {
         hunger: 100,
         happiness: 100,
@@ -13,7 +13,7 @@ let availableCharacters = [{
 },
 {
     species: 'string',
-    imageUrl: image2.jpg,
+    // imageUrl: image2.jpg,
     stats: {
         hunger: 100,
         happiness: 100,
@@ -23,7 +23,7 @@ let availableCharacters = [{
 },
 {
     species: 'string',
-    imageUrl: image3.jpg,
+    // imageUrl: image3.jpg,
     stats: {
         hunger: 100,
         happiness: 100,
@@ -33,7 +33,7 @@ let availableCharacters = [{
 },
 {
     species: 'string',
-    imageUrl: image4.jpg,
+    // imageUrl: image4.jpg,
     stats: {
         hunger: 100,
         happiness: 100,
@@ -43,7 +43,7 @@ let availableCharacters = [{
 },
 {
     species: 'string',
-    imageUrl: image5.jpg,
+    // imageUrl: image5.jpg,
     stats: {
         hunger: 100,
         happiness: 100,
@@ -64,13 +64,13 @@ function endGame() {
 
 let pet = {
     species: 'string',
-    imageUrl: image.jpg,
+    // imageUrl: image.jpg,
     stats: {
-             hunger: 100,
-             happiness: 100,
-             cleanliness: 100,
-             energy: 100,
-       } 
+        hunger: 100,
+        happiness: 100,
+        cleanliness: 100,
+        energy: 100,
+    }
 }
 
 function checkStats() {
@@ -90,10 +90,45 @@ setInterval(decreaseHunger, 10000);
 
 let gameIsActive = false;
 function startGame() {
-    gameisActive = true;
+    gameIsActive = true;
 }
 
-document.getElementById().addEventListener(click, startGame())
+document.getElementById("start-game").addEventListener("click", startGame)
 
 
 
+function increaseStats(statType) {
+    switch(statType) {
+        case 'hunger':
+            if (pet.stats.hunger < 100) {
+                pet.stats.hunger += Math.floor(Math.random() * 5) + 1;
+            }
+            break;
+        case 'happiness':
+            if (pet.stats.happiness < 100) {
+                pet.stats.happiness += Math.floor(Math.random() * 5) + 1;
+            }
+            break;
+        case 'cleanliness':
+            if (pet.stats.cleanliness < 100) {
+                pet.stats.cleanliness += Math.floor(Math.random() * 5) + 1;
+            }
+            break;
+        case 'energy':
+            if (pet.stats.energy < 100) {
+                pet.stats.energy += Math.floor(Math.random() * 5) + 1;
+            }
+            break;
+        default:
+            console.log("Nothing to increase");
+            return;
+    }
+}
+
+document.getElementById('feed-button').addEventListener('click', increaseStats('hunger'));
+;
+document.getElementById('pet-button').addEventListener('click', increaseStats('happiness'));
+;
+document.getElementById('clean-button').addEventListener('click', increaseStats('cleanliness'));
+;
+document.getElementById('play-button').addEventListener('click', increaseStats('energy'));
