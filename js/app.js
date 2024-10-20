@@ -52,6 +52,7 @@ let availableCharacters = [{
     }
 }
 ]
+console.log(availableCharacters)
 function randomCharacter() {
     let randomNum = Math.floor(Math.random() * availableCharacters.length - 1)
     pet = availableCharacters[randomNum];
@@ -74,23 +75,27 @@ let pet = {
 }
 
 function checkStats() {
-    if (pet.stats.hunger <= 0 && gameIsActive) {
+    if ((pet.stats.hunger <= 0) || (pet.stats.cleanliness <=0) || (pet.stats.energy <= 0) || (pet.stats.happiness <=0) && gameIsActive) {
         endGame();
     }
 }
-function decreaseHunger () {
+function decreaseStats () {
    while (gameIsActive) {
     pet.stats.hunger -= Math.floor(Math.random() * 5) + 1;
+    pet.stats.cleanliness -= Math.floor(Math.random() * 5) + 1; 
+    pet.stats.energy -= Math.floor(Math.random() * 5) + 1;
+    pet.stats.happiness -= Math.floor(Math.random() * 5) + 1;
     checkStats();
    }
 }
 
-setInterval(decreaseHunger, 10000);
+setInterval(decreaseStats, 10000);
 
 
 let gameIsActive = false;
 function startGame() {
     gameIsActive = true;
+    console.log(pet);
 }
 
 document.getElementById("start-game").addEventListener("click", startGame)
