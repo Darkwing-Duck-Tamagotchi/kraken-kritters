@@ -240,5 +240,7 @@ button {
     margin: 3em 1em;
 }
 
-
+.developer-photo img {
+   margin: auto;
+}
 
