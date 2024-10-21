@@ -1,0 +1,244 @@
+/* Import Google Font */
+@import url('https://fonts.googleapis.com/css?family=Rubik+One');
+
+/* Body styling */
+body, html { 
+    color: white;
+    font-family: "Rubik One", sans-serif;
+    margin: 0; 
+    padding: 0; 
+    height: 100%; 
+    width: 100%; 
+    background: #090c20;
+    background: linear-gradient(to left, #090c20, #0f1c48);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+/* Default styles for mobile and tablet */
+button {
+    font-size: 1rem;
+}
+
+/* Media query for desktop */
+@media (min-width: 768px) {
+    button {
+        font-size: 1.5rem;
+    }
+}
+
+/* Kritter Container: Set to 100% of the available height */
+#kritter-container {
+    width: 95%;
+    margin: 2em auto;
+    display: flex;
+    flex-direction: row;
+    height: 30%; /* Fill the viewport height */
+    padding: 10px;
+    box-sizing: border-box; /* Include padding in the height calculation */
+}
+
+/* Character Wrap: Will expand to take up the remaining space */
+#character-wrap {
+    background-color: lightblue;
+    flex-grow: 1; /* Makes this section grow to take up available space */
+    flex-basis: 85%;
+    display: flex;
+    justify-content: center; /* Center content horizontally */
+    align-items: center; /* Center content vertically */
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+    width: 80%;
+}
+
+/* Healthbar Wrap: Height is determined by content */
+#healthbar-wrap {
+    width: 15%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+/* Flexbox for horizontal button alignment */
+#action-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2em;  /* Adds space between the buttons */
+    padding: 1em;
+}
+
+/* Base button styling for round buttons */
+.stat-button {
+    display: none;
+    width: 4em; /* Set width */
+    height: 4em;  /* Set height */
+    color: white;
+    background-color: #3498db;  /* Button color */
+    text-decoration: none;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    position: relative;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    border-radius: 50%;  /* Makes the button round */
+    justify-content: center;
+    align-items: center;
+    /* Hard shadow for a 3D effect */
+    box-shadow: 6px 6px 0 #14517a;
+}
+
+/* Hover effect */
+.stat-button:hover {
+    transform: translateY(-3px);  /* Button lifts up */
+    box-shadow: 8px 8px 0 #14517a;  /* Adjust shadow on hover */
+}
+
+/* Active state (button pressed) */
+.stat-button:active {
+    transform: translateY(3px);  /* Button presses down */
+    box-shadow: 2px 2px 0 #14517a;  /* Inset shadow when pressed */
+}
+
+.healthbar-item {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    color: #838486;
+    gap:3px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0 25% 25% 0;
+    text-align: left;
+    padding: 5px 5px 5px 10px;
+}
+
+.healthbar-item i {
+    display: inline-block;
+    font-size: smaller;
+    margin-left: 5px;
+    text-align: left;
+    width: 50%;
+}
+
+.healthbar-item p {
+    font-size: smaller;
+    text-wrap: nowrap;
+    text-align: center;
+    width: 50%;
+}
+
+/* Start Button Styling */
+#start-game, #close-modal { 
+    display: inline-block; 
+    padding: 20px 40px;
+    color: white;
+    text-decoration: none;
+    transition: all 0.2s ease;  /* Shortened transition time for better feedback */
+    background-color: #28a745;  /* Base green color */
+    position: relative;  /* Needed for pseudo-elements */
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+/* Pseudo-element before the button (shadow effect) */
+#start-game::before, #close-modal::before {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    height: 15px;
+    width: 100%;
+    left: 8px;
+    transform: skewX(45deg);
+    background-color: #218838; /* Darken #28a745 by 20% */
+    transition: all 0.5s;
+}
+
+/* Pseudo-element after the button (shadow effect) */
+#start-game::after, #close-modal::after {
+    content: '';
+    position: absolute;
+    right: -15px;
+    height: 100%;
+    width: 15px;
+    bottom: -8px;
+    transform: skewY(45deg);
+    background-color: #1e7e34; /* Darken #218838 by 30% */
+    transition: all 0.5s;
+}
+
+/* Active state using transform */
+#start-game:active, #close-modal:active {
+    transform: translate(5px, 5px);  /* Move the button down and to the right */
+}
+
+/* Adjust the shadows when active */
+#start-game:active::before, #close-modal:active::before {
+    bottom: -5px;
+    height: 5px;
+    left: 3px;
+}
+
+#start-game:active::after, #close-modal:active::after {
+    right: -5px;
+    width: 5px;
+    bottom: -3px;
+}
+
+/* Modal overlay to blur the background */
+#modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent dark overlay */
+    backdrop-filter: blur(5px); /* Apply blur effect */
+    visibility: hidden; /* Hidden by default */
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 999; /* Ensure it's behind the modal */
+}
+
+/* Modal styling */
+#modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #f0f0f0; /* Light grey background */
+    padding: 4em 3em;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    width: 80%;
+    max-width: 400px;
+    z-index: 1000; /* Ensure it's above the overlay */
+    visibility: hidden; /* Hidden by default */
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    text-align: center;
+    color: #0f1c48;
+}
+
+#modal h2 {
+    font-size: 30px;
+}
+
+/* Modal visible state */
+#modal.show, #modal-overlay.show {
+    visibility: visible;
+    opacity: 1;
+}
+
+#modal-content {
+    margin: 3em 1em;
+}
+
+
+
