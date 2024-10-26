@@ -1,27 +1,12 @@
 let gameIsActive = false;
 
 
-let availableCharacters = [{
-    species: 'a',
-    // imageUrl: image1.jpg,
-},
-{
-    species: 'b',
-    // imageUrl: image2.jpg,
-},
-{
-    species: 'c',
-    // imageUrl: image3.jpg,
-},
-{
-    species: 'd',
-    // imageUrl: image4.jpg,
-},
-{
-    species: 'e',
-    // imageUrl: image5.jpg,
-}
-]
+let availableCharacters = []
+    fetch('./austin.json') 
+    .then(response => response.json())
+    .then(data => {
+      availableCharacters = data;
+    })
 
 const modal = document.getElementById('modal');
 const modalOverlay = document.getElementById('modal-overlay');
